@@ -1,0 +1,24 @@
+label{
+    font-family: "Pangolin", cursive;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: "Chelsea Market", system-ui;
+    font-style: normal;
+}
+
+input{
+    font-family: "Pangolin", sans-serif;
+    font-style: normal;
+}
+
+input[type="submit"], button[type="submit"]{
+    font-family: "Pangolin", sans-serif;
+    font-style: normal;
+}
+
+.link{
+    font-family: "Pangolin", sans-serif;
+    font-style: normal;
+}
