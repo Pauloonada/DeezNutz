@@ -20,7 +20,7 @@
             $_SESSION['error'] = "Passwords aren't the same.";
         } else {
             $stmt = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
-            $stmt->bind_param("si", $new_pass, $_SESSION['user_id']);
+            $stmt->bind_param("si", password_hash($new_pass, PASSWORD_DEFAULT), $_SESSION['user_id']);
 
             if ($stmt->execute()) {                
                 $update_count = $conn->prepare("UPDATE users SET login_count = 1 WHERE id = ?");

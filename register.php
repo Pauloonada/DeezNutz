@@ -10,7 +10,7 @@
     require_once("header.php"); 
 ?>
     <title>DeezNutz - Register</title>
-</header>
+</head>
 
 <body data-bs-theme="dark">
     <main class="container d-flex justify-content-center align-items-center vh-100">
@@ -32,6 +32,11 @@
                 <div class="col-sm-12 p-3">
                     <label for="user" class="form-label">Email</label>
                     <input type="text" name="email" id="email" class="form-control" placeholder="Type your email" required>
+                </div>
+
+                <div class="row-sm-12 p-3 text-center">
+                    <label for="pass" class="form-label">Is Admin</label>
+                    <input type="checkbox" name="admin_checkbox" id="is_admin" class="form-check-input">
                 </div>
 
                 <div class="col-sm-12 p-3 text-center">

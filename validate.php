@@ -13,11 +13,13 @@
             // Registration logic
             $username = $_POST['user'];
             $email = $_POST['email'];
+            $is_admin = isset($_POST['admin_checkbox']) ? 1 : 0;
             $password = firstPassword($username);
+            $passwordhash = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert into the database
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $username, $email, $password);
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password, is_admin) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("sssi", $username, $email, $passwordhash, $is_admin);
             if ($stmt->execute()) {
                 $last_id = $conn->insert_id; // Stores the latest user ID in the session
 
@@ -30,6 +32,7 @@
                 $_SESSION['user_id'] = $last_id;
                 $_SESSION['username'] = $uname;
                 $_SESSION['user_email'] = $uemail;
+                $_SESSION['is_admin'] = $is_admin;
                 $_SESSION['login_count'] = $login_count;
                 $_SESSION['success'] = "User registered successfully!";
 
@@ -86,7 +89,7 @@
                     }
                 }
 
-                if($pass === $res['password']){
+                if(password_verify($pass, $res['password'])){ // Checks the hashed passwords
                     // Reseting login attempts
                     $resetAttempts = $conn->prepare("UPDATE users SET login_attempts = 0, last_attempt = NULL WHERE id = ?");
                     $resetAttempts->bind_param("i", $res['id']);
@@ -112,7 +115,7 @@
                     die();
                 }
                 else {
-                    // Wrong password, so we gotta fuck them up ;-;
+                    // Wrong password, so we gotta fuck'em up ;-;
                     $nowDateTime = date('Y-m-d H:i:s');
                     $login_attempts = $res['login_attempts'];
                     $last_attempt = $res['last_attempt'];

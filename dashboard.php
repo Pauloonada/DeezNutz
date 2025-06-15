@@ -21,6 +21,7 @@
                     <h3 class="text-center">Welcome, <?= $_SESSION['username']; ?>!</h3>
                     <p class="text-center">Your login count is: <?= $_SESSION['login_count']; ?></p>
                     <p class="text-center">Your email is: <?= $_SESSION['user_email']; ?></p>
+                    <p class="text-center">Your user type: <?= $_SESSION['is_admin'] == 1 ? 'Admin' : 'Client'?></p>
                     <p class="text-center">
                         Your password is: <span id="password-text">••••••••</span> 
                         <button id="reveal-btn" class="btn btn-sm btn-outline-light ms-2" onclick="">Show</button>

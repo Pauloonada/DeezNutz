@@ -11,7 +11,7 @@
     require_once("header.php"); 
 ?>
     <title>DeezNutz - Login</title>
-</header>
+</head>
 
 <body data-bs-theme="dark">
     <main class="container d-flex justify-content-center align-items-center vh-100">
